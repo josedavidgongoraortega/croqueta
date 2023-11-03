@@ -20,12 +20,13 @@ const Footer = ({ elements, socialElements }: Props) => {
       <div className="md:h-[70px] mx-10 flex flex-col items-center justify-start md:flex md:justify-between md:items-center md:flex-row h-32 ">
         <div className="w-[200px]">
           <ul className="justify-between hidden  md:flex ">
-            {socialElements.slice(0, 3).map((icon) => {
+            {socialElements.slice(0, 3).map((icon, index) => {
               return (
                 <li
                   className={`hover:scale-125 transition-all bg-blue-500 rounded-full h-10 w-10 flex items-center justify-center ${icon.className}`}
+                  key={index}
                 >
-                  <a href={icon.url} target="blank">
+                  <a href={icon.url} target="_blank">
                     <Image
                       src={icon.iconUrl}
                       alt={icon.alt}
@@ -39,9 +40,9 @@ const Footer = ({ elements, socialElements }: Props) => {
           </ul>
         </div>
         <div className=" w-[200px]  md:flex ">
-          {logo.map((img) => {
+          {logo.map((img, index) => {
             return (
-              <a href={img.link}>
+              <a href={img.link} key={index}>
                 <Image
                   src={img.url}
                   alt={img.alt}
@@ -56,12 +57,13 @@ const Footer = ({ elements, socialElements }: Props) => {
           <ul className="flex justify-between mt-6 md:mt-0">
             {socialElements
               .slice(Math.max(socialElements.length - 3, 0))
-              .map((icon) => {
+              .map((icon, index) => {
                 return (
                   <li
                     className={`hover:scale-125 transition-all bg-blue-500 rounded-full h-10 w-10 flex items-center justify-center ${icon.className}`}
+                    key={index}
                   >
-                    <a href={icon.url} target="blank">
+                    <a href={icon.url} target="_blank">
                       <Image
                         src={icon.iconUrl}
                         alt={icon.alt}
@@ -79,16 +81,20 @@ const Footer = ({ elements, socialElements }: Props) => {
       <div className=" h-[170px] mt-2 mx-10 ">
         <div className=" h-[120px] w-full flex flex-col items-center justify-end">
           <ul className=" mt-2 gap-x-12 gap-y-2 uppercase flex flex-wrap justify-center items-center">
-            {elements.map((info) => {
+            {elements.map((info, index) => {
               return (
-                <li>
+                <li key={index}>
                   <a href={info.url}>{info.name}</a>
                 </li>
               );
             })}
           </ul>
-          {mail.map((info) => {
-            return <h4 className="mt-6">{info.text}</h4>;
+          {mail.map((info, index) => {
+            return (
+              <h4 className="mt-6" key={index}>
+                {info.text}
+              </h4>
+            );
           })}
         </div>
       </div>
